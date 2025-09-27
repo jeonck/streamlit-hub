@@ -12,7 +12,19 @@ import {
   Globe,
   FileText,
   Play,
-  MessageCircle
+  MessageCircle,
+  Layout,
+  Database,
+  BarChart3,
+  MousePointer,
+  Palette,
+  Navigation,
+  Settings,
+  Layers,
+  MessageSquare,
+  Grid,
+  Calendar,
+  Package
 } from 'lucide-react'
 
 function App() {
@@ -102,6 +114,51 @@ function App() {
       description: "복잡한 앱을 쉽게 구조화하세요",
       date: "업데이트",
       link: "https://docs.streamlit.io/get-started/tutorials/create-a-multipage-app"
+    }
+  ]
+
+  const codeExamples = [
+    {
+      title: "기본 구성 요소",
+      description: "텍스트, 제목, 기본 모듈 등 Streamlit의 핵심 요소들",
+      icon: Layout,
+      color: "from-blue-500 to-blue-600",
+      items: ["텍스트 표시", "기본 모듈", "컨테이너", "레이아웃"]
+    },
+    {
+      title: "데이터 처리",
+      description: "데이터프레임, 테이블, CRUD 작업 등 데이터 관련 기능",
+      icon: Database,
+      color: "from-green-500 to-green-600",
+      items: ["데이터 에디터", "테이블", "CRUD", "데이터 요소"]
+    },
+    {
+      title: "차트 & 시각화",
+      description: "다양한 차트와 그래프로 데이터를 시각화",
+      icon: BarChart3,
+      color: "from-purple-500 to-purple-600",
+      items: ["기본 차트", "Vega-Lite", "PyDeck", "시각화"]
+    },
+    {
+      title: "사용자 인터페이스",
+      description: "버튼, 폼, 위젯 등 인터랙티브 요소들",
+      icon: MousePointer,
+      color: "from-orange-500 to-orange-600",
+      items: ["버튼", "폼", "라디오 버튼", "날짜 선택기"]
+    },
+    {
+      title: "내비게이션",
+      description: "페이지 전환과 메뉴 구성 방법",
+      icon: Navigation,
+      color: "from-teal-500 to-teal-600",
+      items: ["멀티페이지", "사이드바", "탭", "메뉴"]
+    },
+    {
+      title: "고급 컴포넌트",
+      description: "외부 라이브러리와 커스텀 컴포넌트 활용",
+      icon: Package,
+      color: "from-indigo-500 to-indigo-600",
+      items: ["Lottie", "배너", "피드백", "채팅"]
     }
   ]
 
@@ -210,6 +267,63 @@ function App() {
                 </a>
               )
             })}
+          </div>
+        </section>
+
+        {/* Code Examples Section */}
+        <section className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">실습 예제 모음</h2>
+            <p className="text-blue-100">카테고리별로 분류된 47가지 Streamlit 실습 예제들</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {codeExamples.map((category, index) => {
+              const Icon = category.icon
+              return (
+                <div
+                  key={index}
+                  className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-4`}>
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{category.title}</h3>
+                  <p className="text-blue-100 text-sm mb-4">{category.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {category.items.map((item, itemIndex) => (
+                      <span
+                        key={itemIndex}
+                        className="text-xs bg-white/10 text-blue-200 px-2 py-1 rounded-full"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href="https://github.com/jeonck/streamlit-basic"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-blue-300 hover:text-blue-200 transition-colors text-sm"
+                  >
+                    예제 보기
+                    <ExternalLink className="w-4 h-4 ml-1" />
+                  </a>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="text-center mt-8">
+            <a
+              href="https://github.com/jeonck/streamlit-basic"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg hover:from-green-700 hover:to-blue-700 transition-all"
+            >
+              <GitBranch className="w-5 h-5 mr-2" />
+              전체 예제 저장소 보기
+            </a>
           </div>
         </section>
 
